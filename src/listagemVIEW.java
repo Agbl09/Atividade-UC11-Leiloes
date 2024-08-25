@@ -43,17 +43,7 @@ public class listagemVIEW extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listaProdutos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Valor", "Status"
-            }
-        ));
+        listaProdutos.setModel(listarProdutos());
         jScrollPane1.setViewportView(listaProdutos);
 
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
@@ -201,12 +191,18 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void listarProdutos(){
+    public DefaultTableModel listarProdutos(){
+        DefaultTableModel model = null;
+        
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
             
-            DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
+            model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
+            
+            String[] coluna = {"ID","NOME","VALOR","STATUS"};
+            
+            model.setColumnIdentifiers(coluna);
             
             ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
             
@@ -217,9 +213,12 @@ public class listagemVIEW extends javax.swing.JFrame {
                     listagem.get(i).getValor(),
                     listagem.get(i).getStatus()
                 });
+             
             }
+     
+
         } catch (Exception e) {
         }
-    
+         return model;  
     }
 }
