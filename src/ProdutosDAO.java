@@ -94,7 +94,7 @@ public class ProdutosDAO {
         {
             
             prep = conn.prepareStatement("UPDATE produtos "
-                    + "SET status= Vendido WHERE id= ?");
+                    + "SET status= 'Vendido' WHERE id= ?");
             
             prep.setString(1, produto.getStatus());
             prep.setInt(2, produto.getId());
@@ -121,7 +121,7 @@ public class ProdutosDAO {
            conn = new conectaDAO().connectDB();
            
         try{
-           String sql= "SELECT * FROM produtos WHERE status= Vendido";
+           String sql= "SELECT * FROM produtos WHERE status= 'Vendido'";
            
            PreparedStatement prep = conn.prepareStatement(sql);
            
