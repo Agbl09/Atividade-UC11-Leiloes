@@ -88,6 +88,7 @@ public class ProdutosDAO {
         int status;
         
         conn = new conectaDAO().connectDB();
+       
         
         try
         {
