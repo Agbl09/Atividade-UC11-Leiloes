@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Adm
- */
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -91,5 +83,34 @@ public class ProdutosDAO {
         
     }
     
+    public int venderProduto(ProdutosDTO produto)
+    {
+        int status;
+        
+        conn = new conectaDAO().connectDB();
+        
+        try
+        {
+            
+            prep = conn.prepareStatement("UPDATE produtos "
+                    + "SET status= Vendido WHERE id= ?");
+            
+            prep.setString(1, produto.getStatus());
+            prep.setInt(2, produto.getId());
+                        
+            status= prep.executeUpdate();
+            
+            return status;
+        
+        }
+        
+        catch(SQLException ex)
+        {
+            System.out.println(ex.getErrorCode());
+            
+            return ex.getErrorCode();
+        }
+      
+    }
 }
 
