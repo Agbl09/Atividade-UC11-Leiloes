@@ -94,7 +94,7 @@ public class ProdutosDAO {
         {
             
             prep = conn.prepareStatement("UPDATE produtos "
-                    + "SET status= 'Vendido' WHERE id= ?");
+                    + "SET status=? WHERE id=?");
             
             prep.setString(1, produto.getStatus());
             prep.setInt(2, produto.getId());

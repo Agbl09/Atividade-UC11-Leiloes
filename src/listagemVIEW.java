@@ -118,6 +118,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         ProdutosDTO produto = new ProdutosDTO();
         
         produto.setId(Integer.parseInt(id));
+        produto.setStatus("Vendido");
         
         ProdutosDAO produtosdao = new ProdutosDAO();
         
